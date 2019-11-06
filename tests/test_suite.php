@@ -170,7 +170,7 @@ $checkout_year = date("Y");
 	DisplayParseSelectorResult(TagFilter::ParseSelector('p:not([class^=""])'));
 	DisplayParseSelectorResult(TagFilter::ParseSelector('p:not([class*=""])'));
 	echo "-------------------\n\n";
-
+*/
 	echo "Testing CSS selector cleanup\n";
 	echo "----------------------------\n";
 	$sel = "p.someclass.anotherclass#theid[attr][attr2=val]:first-child:not(a):not(.nope)#theid.someclass,@invalid";
@@ -185,7 +185,7 @@ $checkout_year = date("Y");
 	$sel = "span,SPAN,SpAn,sPaN";
 	echo $sel . "\n";
 	echo "  Result:  " . TagFilterNodes::MakeValidSelector($sel) . "\n\n";
-	echo "-------------------\n\n";*/
+	echo "-------------------\n\n";
 
 	// TagFilter/TagFilterStream HTML parser tests.
 	$htmloptions = TagFilter::GetHTMLOptions();
@@ -199,8 +199,11 @@ $checkout_year = date("Y");
 
 	echo "Testing raw HTML cleanup\n";
 	echo "------------------------\n";
-$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=498d454b81539d9e14885a30ca816693&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D498d454b81539d9e14885a30ca816693%3Bsb_price_type%3Dtotal%26%3B&ss=".$city."%2C+".$state."%2C+".$country."&checkin_monthday=".$checkin_monthday."&checkin_month=".$checkin_month."&checkin_year=".$checkin_year."&checkout_monthday=".$checkout_monthday."&checkout_month=".$checkout_month."&checkout_year=".$checkout_year."&sb_travel_purpose=leisure&room1=A%2CA&no_rooms=1&group_adults=".$adults."&group_children=0&from_sf=1&ss_raw=los+angeles&ac_position=0&ac_langcode=en&dest_id=20014181&dest_type=city&search_pageview_id=23004b7753980159&search_selected=true&search_pageview_id=23004b7753980159&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
+//$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=498d454b81539d9e14885a30ca816693&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D498d454b81539d9e14885a30ca816693%3Bsb_price_type%3Dtotal%26%3B&ss=".$city."%2C+".$state."%2C+".$country."&checkin_monthday=".$checkin_monthday."&checkin_month=".$checkin_month."&checkin_year=".$checkin_year."&checkout_monthday=".$checkout_monthday."&checkout_month=".$checkout_month."&checkout_year=".$checkout_year."&sb_travel_purpose=leisure&room1=A%2CA&no_rooms=1&group_adults=".$adults."&group_children=0&from_sf=1&ss_raw=los+angeles&ac_position=0&ac_langcode=en&dest_id=20014181&dest_type=city&search_pageview_id=23004b7753980159&search_selected=true&search_pageview_id=23004b7753980159&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
 	//$testfile = file_get_contents($rootpath . "/test_xss.txt");
+
+
+$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=498d454b81539d9e14885a30ca816693&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D498d454b81539d9e14885a30ca816693%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&checkin_monthday=31&checkin_month=10&checkin_year=2019&checkout_monthday=02&checkout_month=11&checkout_year=2019&sb_travel_purpose=leisure&room1=A%2CA&no_rooms=1&group_adults=3&group_children=0&from_sf=1&los+angeles&ac_position=0&ac_langcode=en&dest_id=20014181&dest_type=city&search_pageview_id=23004b7753980159&search_selected=true&search_pageview_id=23004b7753980159&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
 
     $testfile = file_get_contents($url);
 
@@ -211,7 +214,7 @@ $url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEogg
 	$result = TagFilter::Run($testfile, $htmloptions);
 	echo $result . "\n\n";
 	echo "-------------------\n\n";
-
+    die();
 //	echo "Testing XSS removal\n";
 //	echo "-------------------\n";
 //	$testfile = file_get_contents($rootpath . "/test_xss.txt");
@@ -234,14 +237,14 @@ $url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEogg
 //	echo $result . "\n\n";
 //	echo "-------------------------\n\n";
 
-
-	// Exploded HTML extraction and TagFilterNodes tests.
+//
+//	 Exploded HTML extraction and TagFilterNodes tests.
 //	echo "Testing Word HTML explode\n";
-////	echo "-------------------------\n";
-////	$testfile = file_get_contents($rootpath . "/test_word.txt");
-////	$pos = strpos($testfile, "@EXIT@");
-////	if ($pos === false)  $pos = strlen($testfile);
-////	$testfile = substr($testfile, 0, $pos);
+//	echo "-------------------------\n";
+//	$testfile = file_get_contents($url);
+//	$pos = strpos($testfile, "@EXIT@");
+//	if ($pos === false)  $pos = strlen($testfile);
+//	$testfile = substr($testfile, 0, $pos);
 
 	// Returns a TagFilterNodes object.
 	$tfn = TagFilter::Explode($testfile, $htmloptions);
@@ -369,7 +372,11 @@ $url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEogg
 
 	// Web scraping.
 
-$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=498d454b81539d9e14885a30ca816693&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D498d454b81539d9e14885a30ca816693%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&checkin_monthday=26&checkin_month=8&checkin_year=2017&checkout_monthday=27&checkout_month=8&checkout_year=2017&sb_travel_purpose=leisure&room1=A%2CA&no_rooms=1&group_adults=2&group_children=0&from_sf=1&ss_raw=los+angeles&ac_position=0&ac_langcode=en&dest_id=20014181&dest_type=city&search_pageview_id=23004b7753980159&search_selected=true&search_pageview_id=23004b7753980159&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
+//$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=498d454b81539d9e14885a30ca816693&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D498d454b81539d9e14885a30ca816693%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&checkin_monthday=26&checkin_month=8&checkin_year=2017&checkout_monthday=27&checkout_month=8&checkout_year=2017&sb_travel_purpose=leisure&room1=A%2CA&no_rooms=1&group_adults=2&group_children=0&from_sf=1&ss_raw=los+angeles&ac_position=0&ac_langcode=en&dest_id=20014181&dest_type=city&search_pageview_id=23004b7753980159&search_selected=true&search_pageview_id=23004b7753980159&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
+
+
+
+    $url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=4c0c7eac5f595794a64d412cc14b7d73&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D4c0c7eac5f595794a64d412cc14b7d73%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&is_ski_area=&checkin_year=2019&checkin_month=11&checkin_monthday=5&checkout_year=2019&checkout_month=11&checkout_monthday=6&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=Los+angeles&ac_position=0&ac_langcode=en&ac_click_type=b&dest_id=20014181&dest_type=city&iata=LAX&place_id_lat=34.052051&place_id_lon=-118.243269&search_pageview_id=6c9d7bbe6791019c&search_selected=true&search_pageview_id=6c9d7bbe6791019c&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
 
 	$html = new simple_html_dom();
 
@@ -391,7 +398,9 @@ $url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEogg
 		}
 	}
 
-	$result = $web->Process("https://www.barebonescms.com/");
+//	$result = $web->Process("https://www.barebonescms.com/");
+	$result = $web->Process($url);
+
 	if (!$result["success"])  echo "[FAIL] An error occurred.  " . $result["error"] . "\n";
 	else if ($result["response"]["code"] != 200)  echo "[FAIL] An unexpected response code was returned.  " . $result["response"]["line"] . "\n";
 	else
@@ -409,7 +418,8 @@ $url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEogg
 	// Test asynchronous access.
 	$urls = array(
 		"http://www.barebonescms.com/",
-		"http://www.cubiclesoft.com/",
+//		"http://www.cubiclesoft.com/",
+        $url,
 	);
 
 	// Build the queue.
