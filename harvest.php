@@ -34,14 +34,14 @@ require_once "scraped.class.php";
 
 //$url = $uri.$paramLabel.$paramLang.$paramSrc.$paramSrc_elem.$paramError_url.$paramSs.$paramSb_Purp.$paramRoom1.$paramNo_Rooms.$paramAdults.$paramChildren.$paramFromSf.$paramSs_raw.$paramAc_pos.$paramFiller;
 
-$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=498d454b81539d9e14885a30ca816693&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D498d454b81539d9e14885a30ca816693%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&checkin_monthday=31&checkin_month=10&checkin_year=2019&checkout_monthday=02&checkout_month=11&checkout_year=2019&sb_travel_purpose=leisure&room1=A%2CA&no_rooms=1&group_adults=3&group_children=0&from_sf=1&los+angeles&ac_position=0&ac_langcode=en&dest_id=20014181&dest_type=city&search_pageview_id=23004b7753980159&search_selected=true&search_pageview_id=23004b7753980159&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
+$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggI46AdIM1gEaIkCiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAL9p4nvBcACAQ&lang=en-gb&sid=4c0c7eac5f595794a64d412cc14b7d73&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggI46AdIM1gEaIkCiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAL9p4nvBcACAQ%3Bsid%3D4c0c7eac5f595794a64d412cc14b7d73%3Bsb_price_type%3Dtotal%26%3B&ss=1+room+rentals+in+Los+Angeles&is_ski_area=0&checkin_year=2019&checkin_month=12&checkin_monthday=1&checkout_year=2019&checkout_month=12&checkout_monthday=2&group_adults=1&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=1+room+rentals+in+Los+Angeles&search_pageview_id=0222517ef225004e";
 
 
 $client = new Client();
 $crawler = $client->request('GET', $url);
 
 foreach($crawler as $domElement){
-    var_dump($domElement->nodeName->text());
+    var_dump($domElement->nodeName);
 
 }
 

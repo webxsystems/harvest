@@ -47,7 +47,7 @@ $paramFiller    =   "search_pageview_id=23004b7753980159&search_selected=true&se
 
 //$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=498d454b81539d9e14885a30ca816693&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D498d454b81539d9e14885a30ca816693%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&checkin_monthday=31&checkin_month=10&checkin_year=2019&checkout_monthday=02&checkout_month=11&checkout_year=2019&sb_travel_purpose=leisure&room1=A%2CA&no_rooms=1&group_adults=3&group_children=0&from_sf=1&los+angeles&ac_position=0&ac_langcode=en&dest_id=20014181&dest_type=city&search_pageview_id=23004b7753980159&search_selected=true&search_pageview_id=23004b7753980159&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
 
-$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ&lang=en-gb&sid=4c0c7eac5f595794a64d412cc14b7d73&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggJCAlhYSDNiBW5vcmVmcgV1c19jYYgBAZgBLsIBA2FibsgBD9gBAegBAfgBC5ICAXmoAgQ%3Bsid%3D4c0c7eac5f595794a64d412cc14b7d73%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&is_ski_area=&checkin_year=2019&checkin_month=11&checkin_monthday=5&checkout_year=2019&checkout_month=11&checkout_monthday=6&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=Los+angeles&ac_position=0&ac_langcode=en&ac_click_type=b&dest_id=20014181&dest_type=city&iata=LAX&place_id_lat=34.052051&place_id_lon=-118.243269&search_pageview_id=6c9d7bbe6791019c&search_selected=true&search_pageview_id=6c9d7bbe6791019c&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0";
+$url = "https://www.booking.com/searchresults.en-gb.html?label=gen173nr-1FCAEoggI46AdIM1gEaIkCiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAL9p4nvBcACAQ&lang=en-gb&sid=4c0c7eac5f595794a64d412cc14b7d73&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.en-gb.html%3Flabel%3Dgen173nr-1FCAEoggI46AdIM1gEaIkCiAEBmAEJuAEXyAEM2AEB6AEB-AELiAIBqAIDuAL9p4nvBcACAQ%3Bsid%3D4c0c7eac5f595794a64d412cc14b7d73%3Bsb_price_type%3Dtotal%26%3B&ss=Los+Angeles%2C+California%2C+USA&is_ski_area=0&checkin_year=2019&checkin_month=12&checkin_monthday=10&checkout_year=2019&checkout_month=12&checkout_monthday=12&group_adults=1&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=los+angeles&ac_position=0&ac_langcode=en&ac_click_type=b&dest_id=20014181&dest_type=city&iata=LAX&place_id_lat=34.052051&place_id_lon=-118.243269&search_pageview_id=e1e24426f7b8009e&search_selected=true";
 
 //echo file_get_contents(urlencode($url));
 
@@ -95,17 +95,30 @@ $rows = $root->Find("span[class=sr-hotel__name");
 $rows2 = $root->Find('span[class=bui-u-sr-only]');
 //$rows3 = $root->Find("div[class]");
 
+//print_r($rows);
 
+echo "<pre>";
+//print_r($rows);
+//print_r($rows2);
+echo "</pre>";
+
+
+echo "----------------------";
 
 foreach ($rows as $row) {
+    if(stripos($row, 'customGoal')){ 
+      // echo $row;
+
       //$scraped->setTitle(trim($row->GetInnerHTML()));
-      $scraped->addTitle(trim($row->GetInnerHTML()));
-      $title[] = $scraped->getTitle();
-      //echo trim($row->GetInnerHTML()) . "\n";
+      //$scraped->addTitle(trim($row->GetInnerHTML()));
+      //$title[] = $scraped->getTitle();
+      $title[] = trim($row->GetInnerHTML());
+ //     echo trim($row->GetInnerHTML()) . "\n";
+    }
 }
 
 foreach($rows2 as $row2){
-    echo $row2;
+ // echo $row2;
     if(stripos($row2, '$')) {
         $sub = trim($row2->GetInnerHTML()) . "\n";
         $pos = stripos($sub, '$');
@@ -125,11 +138,18 @@ foreach($rows2 as $row2){
 //echo "titles : ".count($title);
 //echo "rates : ".count($price);
 
-//foreach($title as $k=>$v){
-   // $scraped->setTitle($v);
-    //$scraped->setPrice(trim($price[$k]));
-//    echo "<pre>";
-  //  print_r($scraped);
-//    echo "</pre>";
-//}
+//var_dump($price);
+//echo count($price);
+$c = count($price) -1;
+$i = 0;
+foreach($title as $k=>$v){
+    echo $title[$i].":".$price[$c][$i]."\n\n";
+    $i++;
+  //  $scraped->setTitle($v);
+ //   $scraped->setPrice(trim($price[$k]));
+//   echo "<pre>";
+///  print_r($scraped);
+ // echo "</pre>";
+ //  echo $v. "\n\n";
+ }
 
